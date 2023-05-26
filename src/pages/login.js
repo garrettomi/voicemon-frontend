@@ -17,7 +17,7 @@ export default function Login() {
       });
 
       if (response.status === 200) {
-        router.push("http://localhost:3000");
+        router.push("http://localhost:3000/homepage");
       } else {
         alert("Login failed.");
       }

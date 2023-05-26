@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Timer({ setShowForm, setPokemonData }) {
+export default function Timer({ setShowForm, setPokemonData, user_id }) {
   const [timerDuration, setTimerDuration] = useState(10);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [isTimeUp, setIsTimeUp] = useState(false);

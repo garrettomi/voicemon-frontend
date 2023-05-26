@@ -6,7 +6,8 @@ import Timer from "./Timer";
 import PokemonList from "./PokemonList";
 import PokemonCounter from "./PokemonCounter";
 
-export default function Home() {
+export default function Home({ user_id, username }) {
+  console.log(username);
   const [pokemonData, setPokemonData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [showForm, setShowForm] = useState(false);
@@ -48,6 +49,20 @@ export default function Home() {
     }
   };
 
+  const handleScoreSubmit = async () => {
+    try {
+      await axios.post("http://localhost:9000/games", {
+        user_id: parseInt(user_id),
+        score: pokemonData.length,
+        username: username,
+      });
+      setPokemonData([]);
+      setShowForm(false);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -55,7 +70,14 @@ export default function Home() {
       {errorMessage && <p>{errorMessage}</p>}
       <PokemonCounter count={pokemonData.length} />
       <PokemonList pokemonData={pokemonData} />
-      <Timer setShowForm={setShowForm} setPokemonData={setPokemonData} />
+      <Timer
+        setShowForm={setShowForm}
+        setPokemonData={setPokemonData}
+        user_id={user_id}
+      />
+      {pokemonData.length > 0 && (
+        <button onClick={handleScoreSubmit}>Submit Score</button>
+      )}
     </div>
   );
 }

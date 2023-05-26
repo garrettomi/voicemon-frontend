@@ -3,10 +3,15 @@ import { useRouter } from "next/router";
 
 export default function Homepage() {
   const router = useRouter();
-  const { user_id } = router.query;
+  const { user_id, username } = router.query;
 
   if (!user_id) {
     return <div>Loading...</div>;
   }
-  return <Home />;
+  return (
+    <>
+      <div>Hello {username}</div>
+      <Home user_id={user_id} username={username} />;
+    </>
+  );
 }

@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Link from "next/link";
 
-export default function Login() {
+export default function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -11,25 +10,24 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:9000/login", {
+      const response = await axios.post("http://localhost:9000/signup", {
         username,
         password,
       });
 
       if (response.status === 200) {
-        router.push("http://localhost:3000");
+        router.push("http://localhost:3000/login");
       } else {
-        alert("Login failed.");
+        alert("Please try again.");
       }
     } catch (error) {
       console.error(error);
-      alert("Login failed.");
+      alert("Please try again later");
     }
   };
-
   return (
     <div>
-      <h1>Typemon Login</h1>
+      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username:</label>
@@ -47,16 +45,8 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Sign Up</button>
       </form>
-      <p>
-        Need an account?
-        <div>
-          <Link href="/signup">
-            <a>Sign Up</a>
-          </Link>
-        </div>
-      </p>
     </div>
   );
 }

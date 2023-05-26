@@ -13,8 +13,10 @@ export default function Home() {
 
   const handleSubmit = async (pokemonName) => {
     try {
+      const lowercaseName = pokemonName.toLowerCase();
+
       const response = await axios.get(
-        `http://localhost:9000/poketype/${pokemonName}`
+        `http://localhost:9000/poketype/${lowercaseName}`
       );
       const data = response.data;
 

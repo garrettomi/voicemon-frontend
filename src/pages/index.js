@@ -2,11 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import Form from "../components/Form";
+import Timer from "../components/Timer";
 import PokemonList from "../components/PokemonList";
+import PokemonCounter from "../components/PokemonCounter";
 
 export default function Home() {
   const [pokemonData, setPokemonData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [showForm, setShowForm] = useState(true);
 
   const handleSubmit = async (pokemonName) => {
     try {
@@ -31,16 +34,17 @@ export default function Home() {
         setErrorMessage("An error occurred");
       }
       console.error("Error:", error);
-      ß;
     }
   };
 
   return (
     <div>
       <Header />
-      <Form handleSubmit={handleSubmit} />
+      {showForm ? <Form handleSubmit={handleSubmit} /> : <p>Times Up!</p>}
       {errorMessage && <p>{errorMessage}</p>}
+      <PokemonCounter count={pokemonData.length} />
       <PokemonList pokemonData={pokemonData} />
+      <Timer setShowForm={setShowForm} />
     </div>
   );
 }

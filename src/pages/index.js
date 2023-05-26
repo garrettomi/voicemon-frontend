@@ -15,6 +15,15 @@ export default function Home() {
     try {
       const lowercaseName = pokemonName.toLowerCase();
 
+      if (
+        pokemonData.some(
+          (pokemon) => pokemon.name.toLowerCase() === lowercaseName
+        )
+      ) {
+        setErrorMessage("Already typed!");
+        return;
+      }
+
       const response = await axios.get(
         `http://localhost:9000/poketype/${lowercaseName}`
       );
@@ -27,7 +36,7 @@ export default function Home() {
         };
 
         setPokemonData((prevData) => [...prevData, newPokemon]);
-        setErrorMessage("");
+        // setErrorMessage("");
       }
     } catch (error) {
       if (error.response && error.response.status === 500) {

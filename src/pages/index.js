@@ -9,7 +9,7 @@ import PokemonCounter from "../components/PokemonCounter";
 export default function Home() {
   const [pokemonData, setPokemonData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
   const handleSubmit = async (pokemonName) => {
     try {
@@ -40,11 +40,11 @@ export default function Home() {
   return (
     <div>
       <Header />
-      {showForm ? <Form handleSubmit={handleSubmit} /> : <p>Times Up!</p>}
+      {showForm ? <Form handleSubmit={handleSubmit} /> : <p>Press Play!</p>}
       {errorMessage && <p>{errorMessage}</p>}
       <PokemonCounter count={pokemonData.length} />
       <PokemonList pokemonData={pokemonData} />
-      <Timer setShowForm={setShowForm} />
+      <Timer setShowForm={setShowForm} setPokemonData={setPokemonData} />
     </div>
   );
 }

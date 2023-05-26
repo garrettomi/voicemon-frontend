@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Timer({ setShowForm }) {
+export default function Timer({ setShowForm, setPokemonData }) {
   const [timerDuration, setTimerDuration] = useState(10);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [isTimeUp, setIsTimeUp] = useState(false);
@@ -30,6 +30,10 @@ export default function Timer({ setShowForm }) {
 
   const handlePlayClick = () => {
     setIsTimerRunning(true);
+    setShowForm(true);
+    setTimerDuration(10);
+    setIsTimeUp(false);
+    setPokemonData([]);
   };
 
   return (

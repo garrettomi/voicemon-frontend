@@ -17,7 +17,13 @@ export default function Login() {
       });
 
       if (response.status === 200) {
-        router.push("http://localhost:3000/homepage");
+        console.log(response.data);
+        const user_id = response.data.id;
+        console.log(user_id);
+        router.push({
+          pathname: "http://localhost:3000/homepage",
+          query: { user_id },
+        });
       } else {
         alert("Login failed.");
       }
@@ -26,6 +32,9 @@ export default function Login() {
       alert("Login failed.");
     }
   };
+
+  console.log("username:", username);
+  console.log("password:", password);
 
   return (
     <div>

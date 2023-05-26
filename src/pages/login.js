@@ -1,44 +1,53 @@
 import { useState } from "react";
-import { axios } from "axios";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:9000/users/login", {
+      const response = await axios.post("http://localhost:9000/login", {
         username,
         password,
       });
+
+      if (response.status === 200) {
+        router.push("http://localhost:3000");
+      } else {
+        alert("Login failed.");
+      }
     } catch (error) {
-      setErrorMessage(error.response.data.error);
+      console.error(error);
+      alert("Login failed.");
     }
   };
+
   return (
     <div>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
+        <div>
+          <label>Username:</label>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-        </label>
-        <label>
-          Password:
+        </div>
+        <div>
+          <label>Password:</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </label>
-        <button type="submit">Log in</button>
+        </div>
+        <button type="submit">Login</button>
       </form>
-      {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 }

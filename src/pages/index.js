@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 import axios from "axios";
 import Header from "../components/Header";
 import Form from "../components/Form";
 import PokemonList from "../components/PokemonList";
-import Login from "../components/Login";
 
 export default function Home() {
   const [pokemonData, setPokemonData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const [authenticated, setAuthenticated] = useState(false);
 
   const handleSubmit = async (pokemonName) => {
     try {
@@ -34,13 +31,13 @@ export default function Home() {
         setErrorMessage("An error occurred");
       }
       console.error("Error:", error);
+      ß;
     }
   };
 
   return (
     <div>
       <Header />
-      <Login />
       <Form handleSubmit={handleSubmit} />
       {errorMessage && <p>{errorMessage}</p>}
       <PokemonList pokemonData={pokemonData} />

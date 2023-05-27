@@ -22,6 +22,7 @@ export default function Login() {
       if (response.status === 200) {
         const user_id = response.data.id;
         const username = response.data.username;
+        console.log(process.env.DOMAIN_URL);
         router.push({
           pathname: `${process.env.DOMAIN_URL}/homepage`,
           query: { user_id, username },

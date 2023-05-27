@@ -24,7 +24,7 @@ export default function Login() {
           query: { user_id, username },
         });
       } else {
-        alert("Login failed.");
+        alert("Login failed");
       }
     } catch (error) {
       console.error(error);

@@ -10,16 +10,13 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "https://solo-mvp-backend.herokuapp.com/signup",
-        {
-          username,
-          password,
-        }
-      );
+      const response = await axios.post(`${process.env.API_URL}/signup`, {
+        username,
+        password,
+      });
 
       if (response.status === 200) {
-        router.push("https://solo-mvp-frontend.vercel.app/login");
+        router.push(`${process.env.DOMAIN_URL}/login`);
       } else {
         alert("Please try again.");
       }

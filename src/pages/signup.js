@@ -10,13 +10,16 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/signup", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "https://solo-mvp-backend.herokuapp.com/signup",
+        {
+          username,
+          password,
+        }
+      );
 
       if (response.status === 200) {
-        router.push("/login");
+        router.push("https://solo-mvp-backend.herokuapp.com/login");
       } else {
         alert("Please try again.");
       }

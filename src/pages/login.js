@@ -11,16 +11,19 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:9000/login", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "https://solo-mvp-backend.herokuapp.com//login",
+        {
+          username,
+          password,
+        }
+      );
 
       if (response.status === 200) {
         const user_id = response.data.id;
         const username = response.data.username;
         router.push({
-          pathname: "http://localhost:3000/homepage",
+          pathname: "https://solo-mvp-backend.herokuapp.com/homepage",
           query: { user_id, username },
         });
       } else {

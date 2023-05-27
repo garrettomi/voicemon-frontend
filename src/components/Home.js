@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
 import Header from "./Header";
 import Form from "./Form";
@@ -10,6 +11,7 @@ export default function Home({ user_id, username }) {
   const [pokemonData, setPokemonData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (pokemonName) => {
     try {
@@ -50,7 +52,8 @@ export default function Home({ user_id, username }) {
 
   const handleScoreSubmit = async () => {
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}games`, {
+      //   await axios.post(`${process.env.NEXT_PUBLIC_API_URL}games`, {
+      await axios.post("http://localhost:9000/games", {
         user_id: parseInt(user_id),
         score: pokemonData.length,
         username: username,
@@ -62,9 +65,14 @@ export default function Home({ user_id, username }) {
     }
   };
 
+  const handleLogout = () => {
+    router.push("/login");
+    console.log("Logged out");
+  };
+
   return (
     <div>
-      <Header />
+      <Header handleLogout={handleLogout} />
       {showForm ? <Form handleSubmit={handleSubmit} /> : <p>Press Play!</p>}
       {errorMessage && <p>{errorMessage}</p>}
       <PokemonCounter count={pokemonData.length} />

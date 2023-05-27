@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Leaderboard from "../pages/leaderboard";
+import Logout from "./Logout";
 
-export default function Header() {
+export default function Header({ handleLogout }) {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   const handleLeaderboardClick = () => {
@@ -15,6 +16,7 @@ export default function Header() {
         <li onClick={handleLeaderboardClick}>
           {showLeaderboard ? "Hide Leaderboard" : "Show Leaderboard"}
         </li>
+        <Logout handleLogout={handleLogout} />
       </ul>
       {showLeaderboard && <Leaderboard />}
     </header>

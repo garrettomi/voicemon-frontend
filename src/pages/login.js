@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
-const domainUrl = process.env.DOMAIN_URL;
-const apiUrl = process.env.API_URL;
+// const domainUrl = process.env.DOMAIN_URL;
+// const apiUrl = process.env.API_URL;
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -26,7 +26,7 @@ export default function Login() {
         const username = response.data.username;
         console.log(domainUrl);
         router.push({
-          pathname: domainUrl + "/homepage",
+          pathname: `${process.env.DOMAIN_URL}/homepage`,
           query: { user_id, username },
         });
       } else {

@@ -7,7 +7,9 @@ export default function Leaderboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.API_URL}/games`);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}games`
+        );
         setLeaderboardData(response.data.data);
       } catch (error) {
         console.error("Error getting leaderboard data:", error);

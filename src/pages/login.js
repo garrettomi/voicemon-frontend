@@ -11,7 +11,6 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(process.env.NEXT_PUBLIC_API_URL);
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}login`,
         {

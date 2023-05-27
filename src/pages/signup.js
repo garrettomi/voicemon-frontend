@@ -10,13 +10,16 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${process.env.API_URL}/signup`, {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}signup`,
+        {
+          username,
+          password,
+        }
+      );
 
       if (response.status === 200) {
-        router.push(`${process.env.DOMAIN_URL}/login`);
+        router.push(`${process.env.NEXT_PUBLIC_DOMAIN_URL}/login`);
       } else {
         alert("Please try again.");
       }

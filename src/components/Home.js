@@ -25,7 +25,7 @@ export default function Home({ user_id, username }) {
       }
 
       const response = await axios.get(
-        `${process.env.API_URL}/poketype/${lowercaseName}`
+        `${process.env.NEXT_PUBLIC_API_URL}poketype/${lowercaseName}`
       );
       const data = response.data;
 
@@ -50,7 +50,7 @@ export default function Home({ user_id, username }) {
 
   const handleScoreSubmit = async () => {
     try {
-      await axios.post(`${process.env.API_URL}/games`, {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}games`, {
         user_id: parseInt(user_id),
         score: pokemonData.length,
         username: username,

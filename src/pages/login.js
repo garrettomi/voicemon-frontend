@@ -23,7 +23,8 @@ export default function Login() {
         const user_id = response.data.id;
         const username = response.data.username;
         router.push({
-          pathname: "https://solo-mvp-frontend.herokuapp.com/homepage",
+          pathname:
+            "https://solo-mvp-frontend-l173jgind-omigarrett-gmailcom.vercel.app/homepage",
           query: { user_id, username },
         });
       } else {

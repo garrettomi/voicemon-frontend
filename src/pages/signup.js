@@ -19,7 +19,7 @@ export default function Signup() {
       );
 
       if (response.status === 200) {
-        router.push("https://solo-mvp-frontend.herokuapp.com/login");
+        router.push("/login");
       } else {
         alert("Please try again.");
       }

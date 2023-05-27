@@ -12,8 +12,8 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        // "https://solo-mvp-backend.herokuapp.com/login",
-        process.env.API_URL + "/login",
+        "https://solo-mvp-backend.herokuapp.com/login",
+        // `${process.env.API_URL}/login`,
         {
           username,
           password,
@@ -24,7 +24,7 @@ export default function Login() {
         const user_id = response.data.id;
         const username = response.data.username;
         router.push({
-          pathname: "https://solo-mvp-frontend.vercel.app/homepage",
+          pathname: `${process.env.DOMAIN_URL}/homepage`,
           query: { user_id, username },
         });
       } else {

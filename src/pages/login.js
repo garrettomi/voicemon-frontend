@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
-// const domainUrl = process.env.DOMAIN_URL;
-// const apiUrl = process.env.API_URL;
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -24,7 +22,6 @@ export default function Login() {
       if (response.status === 200) {
         const user_id = response.data.id;
         const username = response.data.username;
-        console.log(domainUrl);
         router.push({
           pathname: "https://solo-mvp-frontend.vercel.app/homepage",
           query: { user_id, username },

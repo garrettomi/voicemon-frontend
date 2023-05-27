@@ -26,7 +26,7 @@ export default function Login() {
         const username = response.data.username;
         console.log(domainUrl);
         router.push({
-          pathname: `${process.env.DOMAIN_URL}/homepage`,
+          pathname: `https://solo-mvp-frontend.vercel.app/homepage`,
           query: { user_id, username },
         });
       } else {

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
+import styles from "../styles.module.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -37,36 +38,78 @@ export default function Login() {
     }
   };
 
+  //   return (
+  //     <div className="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">
+  //       <h1>Typemon Login</h1>
+  //       <form onSubmit={handleSubmit}>
+  //         <div>
+  //           <label>Username:</label>
+  //           <input
+  //             type="text"
+  //             value={username}
+  //             onChange={(e) => setUsername(e.target.value)}
+  //           />
+  //         </div>
+  //         <div>
+  //           <label>Password:</label>
+  //           <input
+  //             type="password"
+  //             value={password}
+  //             onChange={(e) => setPassword(e.target.value)}
+  //           />
+  //         </div>
+  //         <button type="submit">Login</button>
+  //       </form>
+  //       <div>
+  //         Need an account?
+  //         <div>
+  //           <Link href="/signup">Sign Up</Link>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+
   return (
-    <div>
-      <h1>Typemon Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+    <div className={styles.container}>
+      <div className={styles.loginBox}>
+        <h1 className={styles.title}>Typemon Login</h1>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.inputGroup}>
+            <label htmlFor="username" className={styles.label}>
+              Username:
+            </label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="password" className={styles.label}>
+              Password:
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={styles.input}
+            />
+          </div>
+          <button type="submit" className={styles.button}>
+            Login
+          </button>
+        </form>
+        <div className={styles.signupText}>
+          Need an account?
+          <div>
+            <Link href="/signup">Sign Up</Link>
+          </div>
         </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      <p>
-        Need an account?
-        <div>
-          <Link href="/signup">
-            <a>Sign Up</a>
-          </Link>
-        </div>
-      </p>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
+
+.header {
+  background-color: #fefefe;
+  padding: 20px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loginBox {
+  background-color: #fefefe;
+  padding: 20px;
+}
+
+.title {
+  font-size: 24px;
+  text-align: center;
+  font-family: "Noto Sans JP", cursive;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  animation: typing 2s steps(20), blink-caret 0.5s step-end infinite;
+  white-space: nowrap;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-right-color: transparent;
+  }
+  50% {
+    border-right-color: black;
+  }
+}
+
+.form {
+  margin-top: 20px;
+}
+
+.inputGroup {
+  margin-bottom: 10px;
+  font-family: "Noto Sans JP", cursive;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #000000;
+  font-family: "Noto Sans JP", cursive;
+  border-radius: 8px;
+}
+
+.button {
+  background-color: #d03535;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.signupText {
+  margin-top: 20px;
+  text-align: center;
+  font-family: "Noto Sans JP", cursive;
+}
+
+.signupText a {
+  color: #d03535;
+  text-decoration: underline;
+}

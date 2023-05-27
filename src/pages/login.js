@@ -13,7 +13,6 @@ export default function Login() {
     try {
       console.log(process.env.NEXT_PUBLIC_API_URL);
       const response = await axios.post(
-        // "https://solo-mvp-backend.herokuapp.com/login",
         `${process.env.NEXT_PUBLIC_API_URL}login`,
         {
           username,
@@ -25,7 +24,7 @@ export default function Login() {
         const user_id = response.data.id;
         const username = response.data.username;
         router.push({
-          pathname: `${process.env.NEXT_PUBLIC_API_URL}homepage`,
+          pathname: `${process.env.NEXT_PUBLIC_DOMAIN_URL}homepage`,
           query: { user_id, username },
         });
       } else {

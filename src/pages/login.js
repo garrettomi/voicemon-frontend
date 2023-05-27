@@ -11,6 +11,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(process.env.API_URL);
       const response = await axios.post(
         // "https://solo-mvp-backend.herokuapp.com/login",
         process.env.API_URL + "/login",

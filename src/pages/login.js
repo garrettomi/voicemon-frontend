@@ -13,7 +13,7 @@ export default function Login() {
     try {
       const response = await axios.post(
         // "https://solo-mvp-backend.herokuapp.com/login",
-        process.env.API_URL + "/login",
+        process.env.API_URL + "login",
         {
           username,
           password,

@@ -10,13 +10,13 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:9000/signup", {
+      const response = await axios.post("/signup", {
         username,
         password,
       });
 
       if (response.status === 200) {
-        router.push("http://localhost:3000/login");
+        router.push("/login");
       } else {
         alert("Please try again.");
       }

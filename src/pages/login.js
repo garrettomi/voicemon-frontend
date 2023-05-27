@@ -11,7 +11,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${process.env.API_URL}/login`, {
+      const response = await axios.post(process.env.API_URL + "/login", {
         username,
         password,
       });
@@ -20,7 +20,7 @@ export default function Login() {
         const user_id = response.data.id;
         const username = response.data.username;
         router.push({
-          pathname: `${process.env.DOMAIN_URL}/homepage`,
+          pathname: process.env.DOMAIN_URL + "/homepage",
           query: { user_id, username },
         });
       } else {

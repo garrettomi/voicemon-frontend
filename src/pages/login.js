@@ -14,7 +14,7 @@ export default function Login() {
       console.log(process.env.NEXT_PUBLIC_API_URL);
       const response = await axios.post(
         // "https://solo-mvp-backend.herokuapp.com/login",
-        process.env.NEXT_PUBLIC_API_URL + "/login",
+        `${process.env.NEXT_PUBLIC_API_URL}/login`,
         {
           username,
           password,

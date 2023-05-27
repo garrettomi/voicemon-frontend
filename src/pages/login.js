@@ -11,10 +11,13 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(process.env.API_URL + "/login", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "https://solo-mvp-backend.herokuapp.com/login",
+        {
+          username,
+          password,
+        }
+      );
 
       if (response.status === 200) {
         const user_id = response.data.id;

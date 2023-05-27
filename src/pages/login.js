@@ -12,7 +12,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://solo-mvp-backend.herokuapp.com//login",
+        "https://solo-mvp-backend.herokuapp.com/login",
         {
           username,
           password,

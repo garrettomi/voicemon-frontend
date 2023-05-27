@@ -7,7 +7,6 @@ import PokemonList from "./PokemonList";
 import PokemonCounter from "./PokemonCounter";
 
 export default function Home({ user_id, username }) {
-  console.log(username);
   const [pokemonData, setPokemonData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [showForm, setShowForm] = useState(false);

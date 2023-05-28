@@ -83,10 +83,7 @@ export default function Login() {
           </div>
         </div>
         <div className="loginPageBackground">
-          <Image
-            src="/_next/static/media/login-image.4c79b0aa.jpg"
-            alt="Login background"
-          />
+          <Image src="../public/login-image.jpg" alt="Login background" />
         </div>
       </div>
     </div>

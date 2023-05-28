@@ -21,7 +21,7 @@ export default function Signup() {
       );
 
       if (response.status === 200) {
-        router.push(`${process.env.NEXT_PUBLIC_DOMAIN_URL}/login`);
+        router.push(`/login`);
         // router.push("/login");
       } else {
         alert("Please try again.");

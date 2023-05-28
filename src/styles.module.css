@@ -1,7 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap");
 
 .commonfont {
   font-family: "Noto Sans JP", cursive;
+}
+
+.maintitlefont {
+  font-family: "Orbitron", sans-serif;
+}
+
+.gamefont {
+  font-family: "Bangers", cursive;
 }
 
 /*Login*/
@@ -98,21 +108,20 @@
 }
 
 /* Header */
-.header {
-  background-color: #fefefe;
-  padding: 20px;
-  font-family: "Noto Sans JP", cursive;
-}
 
 .header__title {
   text-align: center;
 }
 
 .header__tabs {
-  padding: 0;
+  padding: 20px 20px;
   margin: 0;
   display: flex;
   flex-direction: column;
+  background-color: #d0c8b8;
+  border: 4px solid #a8a8a0;
+  border-radius: 5px;
+  font-family: "Orbitron", cursive;
 }
 
 /* Homepage */
@@ -137,7 +146,7 @@
 
 .pokemonlist {
   background-color: #88c880;
-  border: 5px solid #c8f8c0;
+  border-color: 5px solid #c8f8c0;
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
@@ -172,4 +181,31 @@
   border: 2px solid #1d1e18;
   border-radius: 10px;
   font-family: "Noto Sans JP", sans-serif;
+}
+
+.homepagebackground {
+  background-color: #3888f0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.leaderboard {
+  color: black;
+  font-family: "Orbitron", cursive;
+}
+
+.odd {
+  background-color: #e06068;
+  border: solid 2px #505050;
+  font-family: "Noto Sans JP", cursive;
+}
+
+.even {
+  background-color: #f8f0d8;
+  border-radius: 5px;
+  font-family: "Noto Sans JP", cursive;
 }

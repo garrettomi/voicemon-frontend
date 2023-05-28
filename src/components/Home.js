@@ -6,12 +6,15 @@ import Form from "./Form";
 import Timer from "./Timer";
 import PokemonList from "./PokemonList";
 import PokemonCounter from "./PokemonCounter";
+import useSound from "use-sound";
+import captureSound from "../public/pokeball_sound_effects_mp3cut_3.mp3";
 import styles from "../styles.module.css";
 
 export default function Home({ user_id, username }) {
   const [pokemonData, setPokemonData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [play] = useSound(captureSound);
   const router = useRouter();
 
   const handleSubmit = async (pokemonName) => {
@@ -64,6 +67,7 @@ export default function Home({ user_id, username }) {
     } catch (error) {
       console.error("Error:", error);
     }
+    play();
   };
 
   const handleLogout = () => {
@@ -80,7 +84,7 @@ export default function Home({ user_id, username }) {
         {showForm ? (
           <Form handleSubmit={handleSubmit} />
         ) : (
-          <h2 className={styles.commonfont}>Gotta type em all!</h2>
+          <h1 className={styles.gamefont}>Gotta type em all!</h1>
         )}
         {errorMessage && <p>{errorMessage}</p>}
         <div className={styles.pokemonlist}>
@@ -96,7 +100,7 @@ export default function Home({ user_id, username }) {
         </div>
         {pokemonData.length > 0 && (
           <button className={styles.scorebutton} onClick={handleScoreSubmit}>
-            Submit Score
+            SUBMIT SCORE
           </button>
         )}
       </div>

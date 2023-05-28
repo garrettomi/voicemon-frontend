@@ -11,8 +11,10 @@ export default function Homepage() {
   }
   return (
     <>
-      <div className={styles.commonfont}>Hello {username}</div>
-      <Home user_id={user_id} username={username} />;
+      <div className={styles.homepagebackground}>
+        <div className={styles.maintitlefont}>Hello {username}</div>
+        <Home user_id={user_id} username={username} />
+      </div>
     </>
   );
 }

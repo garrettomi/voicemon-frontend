@@ -1,11 +1,8 @@
 import { useState } from "react";
 import styles from "../styles.module.css";
-import useSound from "use-sound";
-import clickSound from "../public/pokemon-a-button.mp3";
 
 export default function Form({ handleSubmit }) {
   const [pokemonName, setPokemonName] = useState("");
-  const [play] = useSound(clickSound);
 
   const handleChange = (event) => {
     setPokemonName(event.target.value);
@@ -15,7 +12,6 @@ export default function Form({ handleSubmit }) {
     e.preventDefault();
     handleSubmit(pokemonName);
     setPokemonName("");
-    play();
   };
 
   return (

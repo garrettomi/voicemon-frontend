@@ -43,7 +43,7 @@ export default function Timer({ setShowForm, setPokemonData }) {
 
   return (
     <div>
-      <h3 className={styles.commonfont}>Timer: {timerDuration} seconds</h3>
+      <h3 className={styles.maintitlefont}>Timer: {timerDuration} seconds</h3>
       {!isTimerRunning && (
         <button onClick={handlePlayClick} className={styles.scorebutton}>
           PLAY

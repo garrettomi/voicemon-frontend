@@ -83,12 +83,8 @@ export default function Login() {
             <Link href="/signup">Sign Up</Link>
           </div>
         </div>
-        <div>
-          <Image
-            src={loginimg}
-            alt="Login background"
-            className="loginPageBackground"
-          />
+        <div className="loginPageBackground">
+          <Image src={loginimg} alt="Login background" />
         </div>
       </div>
     </div>

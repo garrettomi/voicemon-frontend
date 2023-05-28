@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
-import Image from "next/image";
 import styles from "../styles.module.css";
 import useSound from "use-sound";
 import clickSound from "../public/pokemon-a-button.mp3";
+import loginimg from "../public/login-image.jpg";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -83,7 +83,7 @@ export default function Login() {
           </div>
         </div>
         <div className="loginPageBackground">
-          <Image src={"/public/login-image.jpg"} alt="Login background" />
+          <img src={loginimg} alt="Login background" />
         </div>
       </div>
     </div>

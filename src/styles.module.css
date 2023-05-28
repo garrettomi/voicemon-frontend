@@ -32,7 +32,7 @@
   /* background-image: url("./public/login-image.jpg");
   background-size: auto;
   background-repeat: no-repeat; */
-  background-position: right bottom;
+  margin-top: 35px;
 }
 
 .title {

@@ -28,12 +28,12 @@
   padding: 20px;
 }
 
-.loginPageBackground {
-  background-image: url("/.next/static/media/login-image.4c79b0aa.jpg");
+/* .loginPageBackground {
+  background-image: url("./public/login-image.jpg");
   background-size: auto;
   background-repeat: no-repeat;
   background-position: right bottom;
-}
+} */
 
 .title {
   font-size: 24px;

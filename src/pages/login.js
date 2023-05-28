@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "../styles.module.css";
 import useSound from "use-sound";
 import clickSound from "../public/pokemon-a-button.mp3";
-import loginimg from "../public/login-image.jpg";
+import loginimg from "/.next/static/media/login-image.4c79b0aa.jpg";
 
 export default function Login() {
   const [username, setUsername] = useState("");

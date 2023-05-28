@@ -7,7 +7,7 @@ import Timer from "./Timer";
 import PokemonList from "./PokemonList";
 import PokemonCounter from "./PokemonCounter";
 import useSound from "use-sound";
-import captureSound from "/.next/static/media/login-image.4c79b0aa.jpg";
+import captureSound from "../public/pokeball_sound_effects_mp3cut_3.mp3";
 import styles from "../styles.module.css";
 
 export default function Home({ user_id, username }) {

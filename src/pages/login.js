@@ -84,7 +84,11 @@ export default function Login() {
           </div>
         </div>
         <div className="loginPageBackground">
-          <Image src={loginimg} alt="Login background" />
+          <Image
+            src={loginimg}
+            alt="Login background"
+            style={{ objectPosition: "calc(100% - 20px) bottom" }}
+          />
         </div>
       </div>
     </div>

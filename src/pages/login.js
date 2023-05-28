@@ -87,7 +87,7 @@ export default function Login() {
           <Image
             src={loginimg}
             alt="Login background"
-            style={{ objectPosition: "calc(100% - 20px) bottom" }}
+            style={{ objectPosition: "right bottom" }}
           />
         </div>
       </div>

@@ -83,11 +83,11 @@ export default function Login() {
             <Link href="/signup">Sign Up</Link>
           </div>
         </div>
-        <div className="loginPageBackground">
+        <div>
           <Image
             src={loginimg}
             alt="Login background"
-            style={{ objectPosition: "right bottom" }}
+            className="loginPageBackground"
           />
         </div>
       </div>

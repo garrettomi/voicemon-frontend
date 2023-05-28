@@ -28,12 +28,12 @@
   padding: 20px;
 }
 
-/* .loginPageBackground {
-  background-image: url("./public/login-image.jpg");
+.loginPageBackground {
+  /* background-image: url("./public/login-image.jpg");
   background-size: auto;
-  background-repeat: no-repeat;
-  background-position: right bottom;
-} */
+  background-repeat: no-repeat; */
+  margin-top: 20px;
+}
 
 .title {
   font-size: 24px;

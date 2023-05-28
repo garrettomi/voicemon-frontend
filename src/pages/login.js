@@ -83,7 +83,7 @@ export default function Login() {
             <Link href="/signup">Sign Up</Link>
           </div>
         </div>
-        <div className="loginPageBackground">
+        <div className={styles.loginPageBackground}>
           <Image src={loginimg} alt="Login background" />
         </div>
       </div>

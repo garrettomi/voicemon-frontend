@@ -32,7 +32,7 @@ export default function Signup() {
     }
   };
   return (
-    <div className={`${styles.container} ${styles.loginPageBackground}`}>
+    <div className={styles.container}>
       <div className={styles.loginBox}>
         <h1 className={styles.title}>Sign Up</h1>
         <form onSubmit={handleSubmit} className={styles.form}>

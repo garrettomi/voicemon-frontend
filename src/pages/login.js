@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "../styles.module.css";
 import useSound from "use-sound";
 import clickSound from "../public/pokemon-a-button.mp3";
@@ -43,7 +44,7 @@ export default function Login() {
   };
 
   return (
-    <div className={`${styles.container} ${styles.loginPageBackground}`}>
+    <div className={styles.container}>
       <div className={styles.loginBox}>
         <h1 className={styles.title}>Typemon Login</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -80,6 +81,12 @@ export default function Login() {
           <div>
             <Link href="/signup">Sign Up</Link>
           </div>
+        </div>
+        <div className="loginPageBackground">
+          <Image
+            src="/_next/static/media/login-image.4c79b0aa.jpg"
+            alt="Login background"
+          />
         </div>
       </div>
     </div>

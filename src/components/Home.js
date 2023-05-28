@@ -14,6 +14,7 @@ export default function Home({ user_id, username }) {
   const [pokemonData, setPokemonData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const [play] = useSound(captureSound);
   const router = useRouter();
 
@@ -56,8 +57,8 @@ export default function Home({ user_id, username }) {
 
   const handleScoreSubmit = async () => {
     try {
-      //   await axios.post(`${process.env.NEXT_PUBLIC_API_URL}games`, {
-      await axios.post("http://localhost:9000/games", {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}games`, {
+        // await axios.post("http://localhost:9000/games", {
         user_id: parseInt(user_id),
         score: pokemonData.length,
         username: username,
@@ -87,7 +88,7 @@ export default function Home({ user_id, username }) {
           <h1 className={styles.gamefont}>Gotta type em all!</h1>
         )}
         {errorMessage && <p>{errorMessage}</p>}
-        <div className={styles.pokemonlist}>
+        <div className={`${styles.pokemonlist} ${isActive ? "active" : ""}`}>
           <PokemonList pokemonData={pokemonData} />
         </div>
         <PokemonCounter count={pokemonData.length} />

@@ -16,8 +16,8 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        // `${process.env.NEXT_PUBLIC_API_URL}login`,
-        "http://localhost:9000/login",
+        `${process.env.NEXT_PUBLIC_API_URL}login`,
+        // "http://localhost:9000/login",
         {
           username,
           password,
@@ -28,8 +28,8 @@ export default function Login() {
         const user_id = response.data.id;
         const username = response.data.username;
         router.push({
-          // pathname: `${process.env.NEXT_PUBLIC_DOMAIN_URL}homepage`,
-          pathname: "http://localhost:3000/homepage",
+          pathname: `${process.env.NEXT_PUBLIC_DOMAIN_URL}homepage`,
+          // pathname: "http://localhost:3000/homepage",
           query: { user_id, username },
         });
       } else {

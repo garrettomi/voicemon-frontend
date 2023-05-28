@@ -146,7 +146,7 @@
 
 .pokemonlist {
   background-color: #88c880;
-  border-color: 5px solid #c8f8c0;
+  border: 5px solid #c8f8c0;
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;

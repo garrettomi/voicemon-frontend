@@ -32,7 +32,7 @@
   /* background-image: url("./public/login-image.jpg");
   background-size: auto;
   background-repeat: no-repeat; */
-  margin-top: 20px;
+  background-position: right bottom;
 }
 
 .title {
@@ -76,6 +76,7 @@
 .label {
   display: block;
   margin-bottom: 5px;
+  font-family: "Noto Sans JP", cursive;
 }
 
 .input {

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles.module.css";
+import useSound from "use-sound";
+import clickSound from "../public/pokemon-a-button.mp3";
 
-export default function Timer({ setShowForm, setPokemonData, user_id }) {
+export default function Timer({ setShowForm, setPokemonData }) {
   const [timerDuration, setTimerDuration] = useState(60);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [isTimeUp, setIsTimeUp] = useState(false);
+  const [play] = useSound(clickSound);
 
   useEffect(() => {
     let intervalId;
@@ -35,6 +38,7 @@ export default function Timer({ setShowForm, setPokemonData, user_id }) {
     setTimerDuration(60);
     setIsTimeUp(false);
     setPokemonData([]);
+    play();
   };
 
   return (
@@ -42,7 +46,7 @@ export default function Timer({ setShowForm, setPokemonData, user_id }) {
       <h3 className={styles.commonfont}>Timer: {timerDuration} seconds</h3>
       {!isTimerRunning && (
         <button onClick={handlePlayClick} className={styles.scorebutton}>
-          Play
+          PLAY
         </button>
       )}
     </div>

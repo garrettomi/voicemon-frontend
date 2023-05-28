@@ -3,10 +3,13 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
 import styles from "../styles.module.css";
+import useSound from "use-sound";
+import clickSound from "../public/pokemon-a-button.mp3";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [play] = useSound(clickSound);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -36,39 +39,8 @@ export default function Login() {
       console.error(error);
       alert("Login failed.");
     }
+    play();
   };
-
-  //   return (
-  //     <div>
-  //       <h1 className="inline text-red-800">Typemon Login</h1>
-  //       <form onSubmit={handleSubmit}>
-  //         <div>
-  //           <label>Username:</label>
-  //           <input
-  //             type="text"
-  //             value={username}
-  //             onChange={(e) => setUsername(e.target.value)}
-  //           />
-  //         </div>
-  //         <div>
-  //           <label>Password:</label>
-  //           <input
-  //             type="password"
-  //             value={password}
-  //             onChange={(e) => setPassword(e.target.value)}
-  //           />
-  //         </div>
-  //         <button type="submit">Login</button>
-  //       </form>
-  //       <div>
-  //         Need an account?
-  //         <div>
-  //           <Link href="/signup">Sign Up</Link>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
   return (
     <div className={`${styles.container} ${styles.loginPageBackground}`}>

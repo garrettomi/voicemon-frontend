@@ -153,4 +153,23 @@
 .scorebutton {
   display: block;
   margin: 0 auto;
+  background-color: #fafbf6;
+  color: #000;
+  border: 2px solid #1d1e18;
+  border-radius: 10px;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.searchbar {
+  background-color: "#90d8e0";
+  border-color: "#707080";
+  border-radius: "5px";
+}
+
+.submitbutton {
+  background-color: #fafbf6;
+  color: #000;
+  border: 2px solid #1d1e18;
+  border-radius: 10px;
+  font-family: "Noto Sans JP", sans-serif;
 }

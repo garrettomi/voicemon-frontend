@@ -80,7 +80,7 @@ export default function Home({ user_id, username }) {
         {showForm ? (
           <Form handleSubmit={handleSubmit} />
         ) : (
-          <p className={styles.commonfont}>Gotta type em all!</p>
+          <h2 className={styles.commonfont}>Gotta type em all!</h2>
         )}
         {errorMessage && <p>{errorMessage}</p>}
         <div className={styles.pokemonlist}>

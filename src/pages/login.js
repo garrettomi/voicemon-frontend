@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "../styles.module.css";
 import useSound from "use-sound";
 import clickSound from "../public/pokemon-a-button.mp3";
-import loginimg from "/_next/static/media/login-image.4c79b0aa.jpg";
+import loginimg from "../public/login-image.jpg";
 import Image from "next/image";
 
 export default function Login() {

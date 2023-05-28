@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from "../styles.module.css";
 
 export default function Timer({ setShowForm, setPokemonData, user_id }) {
   const [timerDuration, setTimerDuration] = useState(60);
@@ -31,15 +32,19 @@ export default function Timer({ setShowForm, setPokemonData, user_id }) {
   const handlePlayClick = () => {
     setIsTimerRunning(true);
     setShowForm(true);
-    setTimerDuration(10);
+    setTimerDuration(60);
     setIsTimeUp(false);
     setPokemonData([]);
   };
 
   return (
     <div>
-      <h3>Timer: {timerDuration} seconds</h3>
-      {!isTimerRunning && <button onClick={handlePlayClick}>Play</button>}
+      <h3 className={styles.commonfont}>Timer: {timerDuration} seconds</h3>
+      {!isTimerRunning && (
+        <button onClick={handlePlayClick} className={styles.scorebutton}>
+          Play
+        </button>
+      )}
     </div>
   );
 }

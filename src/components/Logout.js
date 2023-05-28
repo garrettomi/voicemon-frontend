@@ -1,7 +1,7 @@
 import React from "react";
 
 const Logout = ({ handleLogout }) => {
-  return <li onClick={handleLogout}>Logout</li>;
+  return <div onClick={handleLogout}>Logout</div>;
 };
 
 export default Logout;

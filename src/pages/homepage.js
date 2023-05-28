@@ -1,5 +1,6 @@
 import Home from "../components/Home";
 import { useRouter } from "next/router";
+import styles from "../styles.module.css";
 
 export default function Homepage() {
   const router = useRouter();
@@ -10,7 +11,7 @@ export default function Homepage() {
   }
   return (
     <>
-      <div>Hello {username}</div>
+      <div className={styles.commonfont}>Hello {username}</div>
       <Home user_id={user_id} username={username} />;
     </>
   );

@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
 
-.header {
-  background-color: #fefefe;
-  padding: 20px;
-  text-align: center;
+.commonfont {
+  font-family: "Noto Sans JP", cursive;
 }
+
+/*Login*/
 
 .container {
   display: flex;
@@ -16,6 +16,13 @@
 .loginBox {
   background-color: #fefefe;
   padding: 20px;
+}
+
+.loginPageBackground {
+  background-image: url("./public/login-image.jpg");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: right bottom;
 }
 
 .title {
@@ -88,4 +95,62 @@
 .signupText a {
   color: #d03535;
   text-decoration: underline;
+}
+
+/* Header */
+.header {
+  background-color: #fefefe;
+  padding: 20px;
+  font-family: "Noto Sans JP", cursive;
+}
+
+.header__title {
+  text-align: center;
+}
+
+.header__tabs {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Homepage */
+
+.pokemoncontainer {
+  background-color: #f8f0d8;
+  border: 10px solid #585868;
+  border-radius: 5px;
+  border-width: 5px 10px 5px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.pokemonlist {
+  background-color: #88c880;
+  border: 5px solid #c8f8c0;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.timercontainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.scorebutton {
+  display: block;
+  margin: 0 auto;
 }

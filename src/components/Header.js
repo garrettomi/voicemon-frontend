@@ -12,13 +12,13 @@ export default function Header({ handleLogout }) {
 
   return (
     <header className={styles.header}>
-      <h1 className="header__title">Typemon</h1>
-      <ul className="header__tabs">
-        <li onClick={handleLeaderboardClick}>
+      <h1 className={styles.header__title}>Typemon</h1>
+      <div className={styles.header__tabs}>
+        <div onClick={handleLeaderboardClick}>
           {showLeaderboard ? "Hide Leaderboard" : "Show Leaderboard"}
-        </li>
+        </div>
         <Logout handleLogout={handleLogout} />
-      </ul>
+      </div>
       {showLeaderboard && <Leaderboard />}
     </header>
   );

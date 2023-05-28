@@ -39,8 +39,8 @@ export default function Login() {
   };
 
   //   return (
-  //     <div className="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">
-  //       <h1>Typemon Login</h1>
+  //     <div>
+  //       <h1 className="inline text-red-800">Typemon Login</h1>
   //       <form onSubmit={handleSubmit}>
   //         <div>
   //           <label>Username:</label>
@@ -71,7 +71,7 @@ export default function Login() {
   // }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${styles.loginPageBackground}`}>
       <div className={styles.loginBox}>
         <h1 className={styles.title}>Typemon Login</h1>
         <form onSubmit={handleSubmit} className={styles.form}>

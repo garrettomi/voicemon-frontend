@@ -6,6 +6,7 @@ import Form from "./Form";
 import Timer from "./Timer";
 import PokemonList from "./PokemonList";
 import PokemonCounter from "./PokemonCounter";
+import styles from "../styles.module.css";
 
 export default function Home({ user_id, username }) {
   const [pokemonData, setPokemonData] = useState([]);
@@ -73,18 +74,32 @@ export default function Home({ user_id, username }) {
   return (
     <div>
       <Header handleLogout={handleLogout} />
-      {showForm ? <Form handleSubmit={handleSubmit} /> : <p>Press Play!</p>}
-      {errorMessage && <p>{errorMessage}</p>}
-      <PokemonCounter count={pokemonData.length} />
-      <PokemonList pokemonData={pokemonData} />
-      <Timer
-        setShowForm={setShowForm}
-        setPokemonData={setPokemonData}
-        user_id={user_id}
-      />
-      {pokemonData.length > 0 && (
-        <button onClick={handleScoreSubmit}>Submit Score</button>
-      )}
+      <div />
+
+      <div className={styles.pokemoncontainer}>
+        {showForm ? (
+          <Form handleSubmit={handleSubmit} />
+        ) : (
+          <p className={styles.commonfont}>Gotta type em all!</p>
+        )}
+        {errorMessage && <p>{errorMessage}</p>}
+        <div className={styles.pokemonlist}>
+          <PokemonList pokemonData={pokemonData} />
+        </div>
+        <PokemonCounter count={pokemonData.length} />
+        <div className={styles.timerContainer}>
+          <Timer
+            setShowForm={setShowForm}
+            setPokemonData={setPokemonData}
+            user_id={user_id}
+          />
+        </div>
+        {pokemonData.length > 0 && (
+          <button className={styles.scorebutton} onClick={handleScoreSubmit}>
+            Submit Score
+          </button>
+        )}
+      </div>
     </div>
   );
 }

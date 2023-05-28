@@ -83,7 +83,7 @@ export default function Login() {
           </div>
         </div>
         <div className="loginPageBackground">
-          <Image src="../public/login-image.jpg" alt="Login background" />
+          <Image src={"/public/login-image.jpg"} alt="Login background" />
         </div>
       </div>
     </div>

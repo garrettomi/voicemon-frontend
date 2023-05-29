@@ -1,34 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+**Typemon**
+A full stack application that tests a user's knowledge of Pokemon and typing agility. Sign up, log in, and race against the clock to type as many Pokemon names as you can in 60 seconds. Submit your score and compare your results with a community leaderboard.
 
-## Getting Started
+**Table of Contents
+Introduction
+Features
+Installation
+Usage
+Technologies Used
+Deployment
+Backend Repository
+Frontend Repository
+Contributing
+License
 
-First, run the development server:
+**Introduction**
+Welcome to Typemon! This application is designed to challenge your knowledge of Pokemon while improving your typing skills. Sign up for an account, log in, and get ready to race against the clock. Type as many Pokemon names as you can within 60 seconds and submit your score to see how you rank on the community leaderboard.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+**Features**
+User authentication: Sign up for an account and log in to access the game.
+Typing game: Race against the clock to type as many Pokemon names correctly as possible within 60 seconds.
+Score submission: Submit your score after completing a game to compare your results with other players.
+Community leaderboard: View the leaderboard to see the top scores achieved by other players.
+User profile: Customize your profile and view your personal game statistics.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Installation**
+Clone the repository: git clone https://github.com/your-username/frontend-repo.git
+Install dependencies: npm install
+Configure environment variables. Create a .env file and provide the necessary variables (database connection, API keys, etc.).
+Run the application: npm run dev
+Access the application in your browser at http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+**Usage**
+Sign up for an account or log in if you already have one.
+Start a new game and get ready to type!
+Type the names of the Pokemon you know as quickly and accurately as possible.
+After 60 seconds, your game will end, and you can submit your score.
+Check the leaderboard to see how you rank among other players.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**Technologies Used**
+Frontend:
 
-## Learn More
+Next.js: Framework for building the user interface.
+CSS: Styling the application's components and layout.
 
-To learn more about Next.js, take a look at the following resources:
+Backend:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+PostgreSQL: Relational database management system.
+Express: Web application framework for the API.
+Knex.js: SQL query builder for interacting with the database.
+Node.js: JavaScript runtime environment.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Deployment**
+The application is deployed using the following platforms:
 
-## Deploy on Vercel
+Frontend: Deployed on Vercel. Access the deployed application at https://solo-mvp-frontend.vercel.app/login.
+Backend: Deployed on Heroku. Access the API at https://solo-mvp-backend.herokuapp.com/.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Backend Repository
+The backend code is hosted in a separate GitHub repository. You can access it at https://github.com/garrettomi/solo-mvp-backend.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Contributing**
+Thank you for your interest in contributing to Typemon! If you would like to contribute, please follow the guidelines outlined in the CONTRIBUTING.md file.
+
+**License**
+Disclaimer: The Pokemon Typing Game is not an official Pokemon game and was created solely for recreational personal purposes without any intention of monetary gain. This project is a fan-made application developed by garrettomi. Pokemon and all related trademarks belong to The Pokemon Company, Nintendo, and Game Freak.

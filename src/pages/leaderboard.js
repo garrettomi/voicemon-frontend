@@ -31,27 +31,29 @@ export default function Leaderboard() {
   return (
     <div>
       <h1 className={styles.leaderboard}>Leaderboard</h1>
-      <table>
-        <thead>
-          <tr className={styles.maintitlefont}>
-            <th>Username</th>
-            <th>Score</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedLeaderboardData.map((data, index) => (
-            <tr
-              key={data.id}
-              className={index % 2 === 0 ? styles.even : styles.odd}
-            >
-              <td>{data.username}</td>
-              <td>{data.score}</td>
-              <td>{formatTimestamp(data.created_at)}</td>
+      <div className={styles.leaderboardcontainer}>
+        <table>
+          <thead>
+            <tr className={styles.maintitlefont}>
+              <th>Username</th>
+              <th>Score</th>
+              <th>Time</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {sortedLeaderboardData.map((data, index) => (
+              <tr
+                key={data.id}
+                className={index % 2 === 0 ? styles.even : styles.odd}
+              >
+                <td>{data.username}</td>
+                <td>{data.score}</td>
+                <td>{formatTimestamp(data.created_at)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

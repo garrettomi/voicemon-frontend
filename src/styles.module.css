@@ -199,6 +199,11 @@
   font-family: "Orbitron", cursive;
 }
 
+.leaderboardcontainer {
+  max-height: 400px;
+  overflow: auto;
+}
+
 .odd {
   background-color: #e06068;
   border: solid 2px #505050;

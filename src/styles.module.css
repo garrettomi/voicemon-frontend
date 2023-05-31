@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap");
 
@@ -12,11 +12,11 @@
 
 .gamefont {
   font-family: "Bangers", cursive;
-}
+} */
 
 /*Login*/
 
-.container {
+/* .container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,12 +26,9 @@
 .loginBox {
   background-color: #fefefe;
   padding: 20px;
-}
+} */
 
-.loginPageBackground {
-  /* background-image: url("./public/login-image.jpg");
-  background-size: auto;
-  background-repeat: no-repeat; */
+/* .loginPageBackground {
   margin-top: 35px;
 }
 
@@ -106,11 +103,11 @@
 .signupText a {
   color: #d03535;
   text-decoration: underline;
-}
+} */
 
 /* Header */
 
-.header__title {
+/* .header__title {
   text-align: center;
 }
 
@@ -123,11 +120,11 @@
   border: 4px solid #a8a8a0;
   border-radius: 5px;
   font-family: "Orbitron", cursive;
-}
+} */
 
 /* Homepage */
 
-.pokemoncontainer {
+/* .pokemoncontainer {
   background-color: #f8f0d8;
   border: 10px solid #585868;
   border-radius: 5px;
@@ -214,4 +211,4 @@
   background-color: #f8f0d8;
   border-radius: 5px;
   font-family: "Noto Sans JP", cursive;
-}
+} */

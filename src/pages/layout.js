@@ -1,13 +1,13 @@
-import Header from "../components/Header";
-import styles from "../styles.module.css";
+// import Header from "../components/Header";
+// import styles from "../styles.module.css";
 
-const Layout = ({ children }) => {
-  return (
-    <div>
-      <Header />
-      <main>{children}</main>
-    </div>
-  );
-};
+// const Layout = ({ children }) => {
+//   return (
+//     <div>
+//       <Header />
+//       <main>{children}</main>
+//     </div>
+//   );
+// };
 
-export default Layout;
+// export default Layout;

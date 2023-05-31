@@ -122,14 +122,78 @@ export default function Home() {
     setRandomPokemonId(Math.floor(Math.random() * 1276) + 1);
   };
 
+  // const handleInputChange = (event) => {
+  //   setInputValue(event.target.value);
+  //   if (
+  //     pokemon &&
+  //     event.target.value.toLowerCase() === pokemon.name.toLowerCase()
+  //   ) {
+  //     randomPokemon();
+  //     setInputValue("");
+  //   }
+  // };
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
-    if (
-      pokemon &&
-      event.target.value.toLowerCase() === pokemon.name.toLowerCase()
-    ) {
+    if (pokemon) {
       randomPokemon();
       setInputValue("");
+    } else {
+      sendTranscriptionToBackend(inputValue);
+    }
+  };
+
+  const startVoiceRecognition = () => {
+    if ("webkitSpeechRecognition" in window) {
+      const recognition = new window.webkitSpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.interimResults = false;
+
+      recognition.onresult = (event) => {
+        const transcript =
+          event.results[event.results.length - 1][0].transcript;
+        console.log("Transcript:", transcript);
+        sendTranscriptionToBackend(transcript);
+      };
+
+      recognition.onerror = (event) => {
+        if (event.error === "not-allowed") {
+          console.error("Microphone access not allowed.");
+        } else {
+          console.error("Error:", event.error);
+        }
+      };
+
+      recognition.start();
+    } else {
+      console.log("Speech Recognition Not Available");
+    }
+  };
+
+  const sendTranscriptionToBackend = async (transcript) => {
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/myapp/speech_recognition/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ transcript }),
+        }
+      );
+
+      const result = await response.json();
+      console.log("Backend Response:", result);
+
+      if (
+        result.status === "success" &&
+        pokemon.name.toLowerCase() === result.pokemon_name.toLowerCase()
+      ) {
+        randomPokemon();
+      }
+    } catch (error) {
+      console.error("Error sending transcription to backend:", error);
     }
   };
 
@@ -163,6 +227,7 @@ export default function Home() {
         onChange={handleInputChange}
       />
       <button onClick={randomPokemon}>Skip</button>
+      <button onClick={startVoiceRecognition}>Start Voice Recognition</button>
     </div>
   );
 }

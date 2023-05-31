@@ -115,13 +115,33 @@ import axios from "axios";
 
 export default function Home() {
   const [pokemon, setPokemon] = useState(null);
+  const [randomPokemonId, setRandomPokemonId] = useState(1);
+  const [inputValue, setInputValue] = useState("");
+
+  const randomPokemon = () => {
+    setRandomPokemonId(Math.floor(Math.random() * 1276) + 1);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+    if (
+      pokemon &&
+      event.target.value.toLowerCase() === pokemon.name.toLowerCase()
+    ) {
+      randomPokemon();
+      setInputValue("");
+    }
+  };
 
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/myapp/pokemon/1")
-      .then((response) => setPokemon(response.data))
-      .catch((error) => console.error(`Error: ${error}`));
-  }, []);
+    const fetchPokemon = async () => {
+      const response = axios
+        .get(`http://127.0.0.1:8000/myapp/pokemon/${randomPokemonId}`)
+        .then((response) => setPokemon(response.data))
+        .catch((error) => console.error(`Error: ${error}`));
+    };
+    fetchPokemon();
+  }, [randomPokemonId]);
 
   return (
     <div>
@@ -136,6 +156,13 @@ export default function Home() {
       ) : (
         <p>Loading...</p>
       )}
+      <input
+        type="text"
+        placeholder="Who's that Pokemon?"
+        value={inputValue}
+        onChange={handleInputChange}
+      />
+      <button onClick={randomPokemon}>Skip</button>
     </div>
   );
 }

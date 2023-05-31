@@ -111,35 +111,30 @@
 // }
 
 import { useState, useEffect } from "react";
+import PokemonImage from "./PokemonImage";
+import Form from "./Form";
+import VoiceRecognitionButton from "./VoiceRecognitionButton";
 import axios from "axios";
 
 export default function Home() {
   const [pokemon, setPokemon] = useState(null);
   const [randomPokemonId, setRandomPokemonId] = useState(1);
   const [inputValue, setInputValue] = useState("");
+  const [showTryAgain, setShowTryAgain] = useState(false);
 
   const randomPokemon = () => {
     setRandomPokemonId(Math.floor(Math.random() * 1276) + 1);
+    setShowTryAgain(false);
   };
-
-  // const handleInputChange = (event) => {
-  //   setInputValue(event.target.value);
-  //   if (
-  //     pokemon &&
-  //     event.target.value.toLowerCase() === pokemon.name.toLowerCase()
-  //   ) {
-  //     randomPokemon();
-  //     setInputValue("");
-  //   }
-  // };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
-    if (pokemon) {
+    if (
+      pokemon &&
+      event.target.value.toLowerCase() === pokemon.name.toLowerCase()
+    ) {
       randomPokemon();
       setInputValue("");
-    } else {
-      sendTranscriptionToBackend(inputValue);
     }
   };
 
@@ -191,6 +186,8 @@ export default function Home() {
         pokemon.name.toLowerCase() === result.pokemon_name.toLowerCase()
       ) {
         randomPokemon();
+      } else {
+        setShowTryAgain(true);
       }
     } catch (error) {
       console.error("Error sending transcription to backend:", error);
@@ -207,27 +204,42 @@ export default function Home() {
     fetchPokemon();
   }, [randomPokemonId]);
 
+  //   return (
+  //     <div>
+  //       {pokemon ? (
+  //         <div>
+  //           <img
+  //             src={pokemon.img_url}
+  //             alt={pokemon.name}
+  //             style={{ width: "500px", height: "500px" }}
+  //           />
+  //         </div>
+  //       ) : (
+  //         <p>Loading...</p>
+  //       )}
+  //       <input
+  //         type="text"
+  //         placeholder="Who's that Pokemon?"
+  //         value={inputValue}
+  //         onChange={handleInputChange}
+  //       />
+  //       <button onClick={randomPokemon}>Skip</button>
+  //       <button onClick={startVoiceRecognition}>🎤</button>
+  //       {showTryAgain && <p>Try again!</p>}
+  //     </div>
+  //   );
+  // }
+
   return (
     <div>
-      {pokemon ? (
-        <div>
-          <img
-            src={pokemon.img_url}
-            alt={pokemon.name}
-            style={{ width: "500px", height: "500px" }}
-          />
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-      <input
-        type="text"
-        placeholder="Who's that Pokemon?"
-        value={inputValue}
-        onChange={handleInputChange}
+      <PokemonImage pokemon={pokemon} />
+      <Form
+        inputValue={inputValue}
+        handleInputChange={handleInputChange}
+        showTryAgain={showTryAgain}
       />
       <button onClick={randomPokemon}>Skip</button>
-      <button onClick={startVoiceRecognition}>Start Voice Recognition</button>
+      <VoiceRecognitionButton startVoiceRecognition={startVoiceRecognition} />
     </div>
   );
 }

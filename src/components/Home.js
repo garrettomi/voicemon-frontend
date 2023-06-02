@@ -1,245 +1,143 @@
-// import { useState } from "react";
-// import { useRouter } from "next/router";
-// import axios from "axios";
-// import Header from "./Header";
-// import Form from "./Form";
-// import Timer from "./Timer";
-// import PokemonList from "./PokemonList";
+// import { useState, useEffect } from "react";
+// import PokemonImage from "./PokemonImage";
 // import PokemonCounter from "./PokemonCounter";
-// import useSound from "use-sound";
-// import captureSound from "../public/pokeball_sound_effects_mp3cut_3.mp3";
-// import styles from "../styles.module.css";
+// import Form from "./Form";
+// import VoiceRecognitionButton from "./VoiceRecognitionButton";
+// // import styles from "../styles.module.css";
+// import axios from "axios";
 
-// export default function Home({ user_id, username }) {
-//   const [pokemonData, setPokemonData] = useState([]);
-//   const [errorMessage, setErrorMessage] = useState("");
-//   const [showForm, setShowForm] = useState(false);
-//   const [isActive, setIsActive] = useState(false);
-//   const [play] = useSound(captureSound);
-//   const router = useRouter();
+// export default function Home() {
+//   const [pokemon, setPokemon] = useState(null);
+//   const [correctPokemon, setCorrectPokemon] = useState([]);
+//   const [randomPokemonId, setRandomPokemonId] = useState(1);
+//   const [inputValue, setInputValue] = useState("");
+//   const [showTryAgain, setShowTryAgain] = useState(false);
+//   const [timerActive, setTimerActive] = useState(false);
+//   const [timerDuration, setTimerDuration] = useState(5);
 
-//   const handleSubmit = async (pokemonName) => {
+//   const randomPokemon = () => {
+//     setRandomPokemonId(Math.floor(Math.random() * 1276) + 1);
+//     setShowTryAgain(false);
+//   };
+
+//   const handleInputChange = (event) => {
+//     setInputValue(event.target.value);
+//     if (
+//       pokemon &&
+//       event.target.value.toLowerCase() === pokemon.name.toLowerCase()
+//     ) {
+//       randomPokemon();
+//       setInputValue("");
+//       setCorrectPokemon([...correctPokemon, pokemon.name]);
+//       setShowPokemonImage(true);
+//     }
+//   };
+
+//   const startVoiceRecognition = () => {
+//     if ("webkitSpeechRecognition" in window) {
+//       const recognition = new window.webkitSpeechRecognition();
+//       recognition.lang = "en-US";
+//       recognition.interimResults = false;
+
+//       recognition.onresult = (event) => {
+//         const transcript =
+//           event.results[event.results.length - 1][0].transcript;
+//         console.log("Transcript:", transcript);
+//         sendTranscriptionToBackend(transcript);
+//       };
+
+//       recognition.onerror = (event) => {
+//         if (event.error === "not-allowed") {
+//           console.error("Microphone access not allowed.");
+//         } else {
+//           console.error("Error:", event.error);
+//         }
+//       };
+
+//       recognition.start();
+//     } else {
+//       console.log("Speech Recognition Not Available");
+//     }
+//   };
+
+//   const sendTranscriptionToBackend = async (transcript) => {
 //     try {
-//       const lowercaseName = pokemonName.toLowerCase();
-
-//       if (
-//         pokemonData.some(
-//           (pokemon) => pokemon.name.toLowerCase() === lowercaseName
-//         )
-//       ) {
-//         setErrorMessage("Already typed!");
-//         return;
-//       }
-
-//       const response = await axios.get(
-//         // `${process.env.NEXT_PUBLIC_API_URL}poketype/${lowercaseName}`
-//         "http://127.0.0.1:8000/myapp/pokemon/1/"
+//       const response = await fetch(
+//         "http://127.0.0.1:8000/myapp/speech_recognition/",
+//         {
+//           method: "POST",
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
+//           body: JSON.stringify({ transcript }),
+//         }
 //       );
-//       const data = response.data;
 
-//       if (response.status === 200) {
-//         const newPokemon = {
-//           name: data.name,
-//           img_url: data.img_url,
-//         };
+//       const result = await response.json();
+//       console.log("Backend Response:", result);
 
-//         setPokemonData((prevData) => [...prevData, newPokemon]);
-//         setErrorMessage("");
-//       }
-//     } catch (error) {
-//       if (error.response && error.response.status === 500) {
-//         setErrorMessage("Pokemon not found");
+//       if (result.status === "success" && pokemon.id === result.pokemon_id) {
+//         randomPokemon();
+//         setCorrectPokemon([...correctPokemon, pokemon.name]);
 //       } else {
-//         setErrorMessage("An error occurred");
+//         setShowTryAgain(true);
 //       }
-//       console.error("Error:", error);
-//     }
-//   };
-
-//   const handleScoreSubmit = async () => {
-//     try {
-//       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}games`, {
-//         // await axios.post("http://localhost:9000/games", {
-//         user_id: parseInt(user_id),
-//         score: pokemonData.length,
-//         username: username,
-//       });
-//       setPokemonData([]);
-//       setShowForm(false);
 //     } catch (error) {
-//       console.error("Error:", error);
+//       console.error("Error sending transcription to backend:", error);
 //     }
-//     play();
 //   };
 
-//   const handleLogout = () => {
-//     router.push("/login");
-//     console.log("Logged out");
+//   useEffect(() => {
+//     let intervalId;
+
+//     if (timerActive) {
+//       intervalId = setInterval(() => {
+//         setTimerDuration((prevDuration) => prevDuration - 1);
+//       }, 1000);
+
+//       if (timerDuration === 0) {
+//         setTimerActive(false);
+//       }
+
+//       return () => {
+//         clearTimeout(intervalId);
+//       };
+//     }
+//   }, [timerActive, timerDuration]);
+
+//   const handlePlayButtonClick = () => {
+//     setTimerActive(true);
+//     setTimerDuration(60);
+//     setCorrectPokemon([]);
 //   };
+
+//   useEffect(() => {
+//     const fetchPokemon = async () => {
+//       const response = axios
+//         .get(`http://127.0.0.1:8000/myapp/pokemon/${randomPokemonId}`)
+//         .then((response) => setPokemon(response.data))
+//         .catch((error) => console.error(`Error: ${error}`));
+//     };
+//     fetchPokemon();
+//   }, [randomPokemonId]);
 
 //   return (
 //     <div>
-//       <Header handleLogout={handleLogout} />
-//       <div />
-
-//       <div className={styles.pokemoncontainer}>
-//         {showForm ? (
-//           <Form handleSubmit={handleSubmit} />
-//         ) : (
-//           <h1 className={styles.gamefont}>Gotta type em all!</h1>
-//         )}
-//         {errorMessage && <p>{errorMessage}</p>}
-//         <div className={`${styles.pokemonlist} ${isActive ? "active" : ""}`}>
-//           <PokemonList pokemonData={pokemonData} />
-//         </div>
-//         <PokemonCounter count={pokemonData.length} />
-//         <div className={styles.timerContainer}>
-//           <Timer
-//             setShowForm={setShowForm}
-//             setPokemonData={setPokemonData}
-//             user_id={user_id}
-//           />
-//         </div>
-//         {pokemonData.length > 0 && (
-//           <button className={styles.scorebutton} onClick={handleScoreSubmit}>
-//             SUBMIT SCORE
-//           </button>
-//         )}
-//       </div>
+//       {timerActive && <PokemonImage pokemon={pokemon} />}
+//       {timerActive && (
+//         <Form
+//           inputValue={inputValue}
+//           handleInputChange={handleInputChange}
+//           showTryAgain={showTryAgain}
+//         />
+//       )}
+//       {timerActive && <button onClick={randomPokemon}>Skip</button>}
+//       {timerActive && (
+//         <VoiceRecognitionButton startVoiceRecognition={startVoiceRecognition} />
+//       )}
+//       <button onClick={handlePlayButtonClick}>Play</button>
+//       {timerActive && <h3>Timer: {timerDuration} seconds</h3>}
+//       <PokemonCounter correctPokemon={correctPokemon} />
 //     </div>
 //   );
 // }
-
-import { useState, useEffect } from "react";
-import PokemonImage from "./PokemonImage";
-import Form from "./Form";
-import VoiceRecognitionButton from "./VoiceRecognitionButton";
-import axios from "axios";
-
-export default function Home() {
-  const [pokemon, setPokemon] = useState(null);
-  const [randomPokemonId, setRandomPokemonId] = useState(1);
-  const [inputValue, setInputValue] = useState("");
-  const [showTryAgain, setShowTryAgain] = useState(false);
-
-  const randomPokemon = () => {
-    setRandomPokemonId(Math.floor(Math.random() * 1276) + 1);
-    setShowTryAgain(false);
-  };
-
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-    if (
-      pokemon &&
-      event.target.value.toLowerCase() === pokemon.name.toLowerCase()
-    ) {
-      randomPokemon();
-      setInputValue("");
-    }
-  };
-
-  const startVoiceRecognition = () => {
-    if ("webkitSpeechRecognition" in window) {
-      const recognition = new window.webkitSpeechRecognition();
-      recognition.lang = "en-US";
-      recognition.interimResults = false;
-
-      recognition.onresult = (event) => {
-        const transcript =
-          event.results[event.results.length - 1][0].transcript;
-        console.log("Transcript:", transcript);
-        sendTranscriptionToBackend(transcript);
-      };
-
-      recognition.onerror = (event) => {
-        if (event.error === "not-allowed") {
-          console.error("Microphone access not allowed.");
-        } else {
-          console.error("Error:", event.error);
-        }
-      };
-
-      recognition.start();
-    } else {
-      console.log("Speech Recognition Not Available");
-    }
-  };
-
-  const sendTranscriptionToBackend = async (transcript) => {
-    try {
-      const response = await fetch(
-        "http://127.0.0.1:8000/myapp/speech_recognition/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ transcript }),
-        }
-      );
-
-      const result = await response.json();
-      console.log("Backend Response:", result);
-
-      if (
-        result.status === "success" &&
-        pokemon.name.toLowerCase() === result.pokemon_name.toLowerCase()
-      ) {
-        randomPokemon();
-      } else {
-        setShowTryAgain(true);
-      }
-    } catch (error) {
-      console.error("Error sending transcription to backend:", error);
-    }
-  };
-
-  useEffect(() => {
-    const fetchPokemon = async () => {
-      const response = axios
-        .get(`http://127.0.0.1:8000/myapp/pokemon/${randomPokemonId}`)
-        .then((response) => setPokemon(response.data))
-        .catch((error) => console.error(`Error: ${error}`));
-    };
-    fetchPokemon();
-  }, [randomPokemonId]);
-
-  //   return (
-  //     <div>
-  //       {pokemon ? (
-  //         <div>
-  //           <img
-  //             src={pokemon.img_url}
-  //             alt={pokemon.name}
-  //             style={{ width: "500px", height: "500px" }}
-  //           />
-  //         </div>
-  //       ) : (
-  //         <p>Loading...</p>
-  //       )}
-  //       <input
-  //         type="text"
-  //         placeholder="Who's that Pokemon?"
-  //         value={inputValue}
-  //         onChange={handleInputChange}
-  //       />
-  //       <button onClick={randomPokemon}>Skip</button>
-  //       <button onClick={startVoiceRecognition}>🎤</button>
-  //       {showTryAgain && <p>Try again!</p>}
-  //     </div>
-  //   );
-  // }
-
-  return (
-    <div>
-      <PokemonImage pokemon={pokemon} />
-      <Form
-        inputValue={inputValue}
-        handleInputChange={handleInputChange}
-        showTryAgain={showTryAgain}
-      />
-      <button onClick={randomPokemon}>Skip</button>
-      <VoiceRecognitionButton startVoiceRecognition={startVoiceRecognition} />
-    </div>
-  );
-}

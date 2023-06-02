@@ -1,54 +1,40 @@
-// import React, { useState, useEffect } from "react";
-// import styles from "../styles.module.css";
-// import useSound from "use-sound";
-// import clickSound from "../public/pokemon-a-button.mp3";
+import { useState, useEffect } from "react";
 
-// export default function Timer({ setShowForm, setPokemonData }) {
-//   const [timerDuration, setTimerDuration] = useState(60);
-//   const [isTimerRunning, setIsTimerRunning] = useState(false);
-//   const [isTimeUp, setIsTimeUp] = useState(false);
-//   const [play] = useSound(clickSound);
+const Timer = ({ onPlay, onTimeUp }) => {
+  const [timerActive, setTimerActive] = useState(false);
+  const [timerDuration, setTimerDuration] = useState(5);
 
-//   useEffect(() => {
-//     let intervalId;
+  useEffect(() => {
+    let intervalId;
 
-//     if (isTimerRunning) {
-//       intervalId = setInterval(() => {
-//         setTimerDuration((prevDuration) => prevDuration - 1);
-//       }, 1000);
-//     }
+    if (timerActive) {
+      intervalId = setInterval(() => {
+        setTimerDuration((prevDuration) => prevDuration - 1);
+      }, 1000);
 
-//     if (timerDuration === 0) {
-//       setIsTimeUp(true);
-//       setIsTimerRunning(false);
-//     }
+      if (timerDuration === 0) {
+        setTimerActive(false);
+        onTimeUp();
+      }
 
-//     if (isTimeUp) {
-//       setShowForm(false);
-//     }
+      return () => {
+        clearTimeout(intervalId);
+      };
+    }
+  }, [timerActive, timerDuration]);
 
-//     return () => {
-//       clearInterval(intervalId);
-//     };
-//   }, [isTimerRunning, isTimeUp, setShowForm, timerDuration]);
+  const handlePlayButtonClick = () => {
+    setTimerActive(true);
+    setTimerDuration(60);
+    onPlay();
+  };
 
-//   const handlePlayClick = () => {
-//     setIsTimerRunning(true);
-//     setShowForm(true);
-//     setTimerDuration(60);
-//     setIsTimeUp(false);
-//     setPokemonData([]);
-//     play();
-//   };
+  return (
+    <div>
+      <button onClick={handlePlayButtonClick}>Play</button>
+      {timerActive && <h3>Timer: {timerDuration} seconds</h3>}
+    </div>
+  );
+};
 
-//   return (
-//     <div>
-//       <h3 className={styles.maintitlefont}>Timer: {timerDuration} seconds</h3>
-//       {!isTimerRunning && (
-//         <button onClick={handlePlayClick} className={styles.scorebutton}>
-//           PLAY
-//         </button>
-//       )}
-//     </div>
-//   );
-// }
+export default Timer;

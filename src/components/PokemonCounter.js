@@ -1,10 +1,18 @@
-// import React from "react";
-// import styles from "../styles.module.css";
+import React, { useEffect, useState } from "react";
+import styles from "../styles/styles.module.css";
 
-// export default function PokemonCounter({ count }) {
-//   return (
-//     <div>
-//       <h2 className={styles.maintitlefont}>Score: {count}</h2>
-//     </div>
-//   );
-// }
+export default function PokemonCounter({ correctPokemon }) {
+  const [correctPokemonCount, setCorrectPokemonCount] = useState(0);
+
+  useEffect(() => {
+    setCorrectPokemonCount(correctPokemon.length);
+  }, [correctPokemon]);
+
+  return (
+    <div>
+      <h2 className={styles.gamefont}>
+        Correct Pokemon: {correctPokemonCount}
+      </h2>
+    </div>
+  );
+}

@@ -36,19 +36,6 @@ export default function Home() {
     setShowTryAgain(false);
   };
 
-  // const handleInputChange = (event) => {
-  //   setInputValue(event.target.value);
-  //   if (
-  //     pokemon &&
-  //     event.target.value.toLowerCase() === pokemon.name.toLowerCase()
-  //   ) {
-  //     randomPokemon();
-  //     setInputValue("");
-  //     setCorrectPokemon([...correctPokemon, pokemon.name]);
-  //     setShowPokemonImage(true);
-  //   }
-  // };
-
   const startVoiceRecognition = () => {
     if ("webkitSpeechRecognition" in window) {
       const recognition = new window.webkitSpeechRecognition();

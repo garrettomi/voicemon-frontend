@@ -14,7 +14,6 @@
 import { useState, useEffect } from "react";
 import PokemonImage from "@/components/PokemonImage";
 import PokemonCounter from "@/components/PokemonCounter";
-// import Form from "@/components/Form";
 import VoiceRecognitionButton from "@/components/VoiceRecognitionButton";
 import axios from "axios";
 import styles from "../styles/styles.module.css";

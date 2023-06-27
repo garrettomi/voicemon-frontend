@@ -66,7 +66,7 @@ export default function Home() {
     try {
       const response = await fetch(
         // "http://127.0.0.1:8000/myapp/speech_recognition/",
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/myapp/speech_recognition/`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}myapp/speech_recognition/`,
         {
           method: "POST",
           headers: {
@@ -122,7 +122,7 @@ export default function Home() {
       const response = axios
         // .get(`http://127.0.0.1:8000/myapp/pokemon/${randomPokemonId}`)
         .get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/myapp/pokemon/${randomPokemonId}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}myapp/pokemon/${randomPokemonId}`
         )
         .then((response) => setPokemon(response.data))
         .catch((error) => console.error(`Error: ${error}`));
